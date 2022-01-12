@@ -14,17 +14,13 @@ function solution(input) {
     for (let j = 1; j < input[i].length; j++) {
       if (input[i][j] !== input[i][j - 1]) {
         temp.push(input[i][j]);
-        console.log(temp);
       }
     }
-    temp = [];
 
-    console.log(temp.length);
-    // console.log([...new Set(input[0].split(""))].length);
-    if ([...new Set(input[0].split(""))].length === temp.length) {
-      console.log(temp);
+    if ([...new Set(input[i].split(""))].length === temp.length) {
       count++;
     }
+    temp = [];
   }
   console.log(count);
 }
