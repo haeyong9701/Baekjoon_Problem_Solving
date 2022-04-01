@@ -15,7 +15,6 @@ function solution() {
     let res = false;
     while (start <= end) {
       let mid = parseInt((start + end) / 2);
-      console.log(mid + "mid");
       if (e < A[mid]) {
         end = mid - 1;
       } else if (e > A[mid]) {
@@ -33,7 +32,7 @@ function solution() {
     }
   });
 
-  return result;
+  return result.join("\n");
 }
 
 console.log(solution());
