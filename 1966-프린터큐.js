@@ -2,21 +2,33 @@ const fs = require("fs");
 // TODO: 제출 시 절대경로로 변환 필수 ("/dev/stdin")
 const input = fs.readFileSync("test.txt").toString().trim().split("\n");
 // 정리
-const newArr = [];
-
-let count = 0;
+const [n, ...testcases] = input;
 
 // 풀이
-function solution() {
-  const [k, ...numbers] = input;
-  for (let i = 0; i < numbers.length; i = i + 2) {
-    let [papers, choice] = numbers[i].split(" ");
-    let priority = numbers[i + 1].split(" ").map(Number);
+function solution(n, testcases) {
+  for (let i = 0; i < n; i++) {
+    let count = 1;
+    let M = Number(testcases[i * 2].split(" ")[1]);
+    const queue = testcases[i * 2 + 1].split(" ").map((i) => Number(i));
 
-    console.log(priority);
-    for (let j = 0; j < papers; j++) {}
+    while (1) {
+      const shiftItem = queue.shift();
+
+      if (Math.max(...queue) <= shiftItem && M === 0) {
+        console.log(count);
+        break;
+      } else if (Math.max(...queue) > shiftItem && M === 0) {
+        queue.push(shiftItem);
+        M = queue.length - 1;
+      } else if (Math.max(...queue) > shiftItem) {
+        queue.push(shiftItem);
+        M -= 1;
+      } else if (Math.max(...queue) <= shiftItem) {
+        count++;
+        M -= 1;
+      }
+    }
   }
-  return numbers;
 }
 
-console.log(solution());
+solution(n, testcases);
